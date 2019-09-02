@@ -1,0 +1,208 @@
+{
+    // Workbench customization
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.statusBar.visible": true,
+    "workbench.settings.editor": "json",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#ffffffb2",
+        "activityBarBadge.background": "#42A5F5",
+        "list.activeSelectionForeground": "#42A5F5",
+        "list.inactiveSelectionForeground": "#42A5F5",
+        "list.highlightForeground": "#42A5F5",
+        "scrollbarSlider.activeBackground": "#42A5F550",
+        "editorSuggestWidget.highlightForeground": "#42A5F5",
+        "textLink.foreground": "#42A5F5",
+        "progressBar.background": "#42A5F5",
+        "pickerGroup.foreground": "#42A5F5",
+        "tab.activeBorder": "#42A5F5",
+        "notificationLink.foreground": "#42A5F5",
+        "editorWidget.resizeBorder": "#42A5F5",
+        "editorWidget.border": "#42A5F5",
+        "settings.modifiedItemIndicator": "#42A5F5",
+        "settings.headerForeground": "#42A5F5",
+        "panelTitle.activeBorder": "#42A5F5",
+        "breadcrumb.activeSelectionForeground": "#42A5F5",
+        "menu.selectionForeground": "#42A5F5",
+        "menubar.selectionForeground": "#42A5F5",
+        "statusBar.background": "#C678DD",
+        "statusBar.noFolderBackground": "#C678DD",
+        "statusBar.debuggingBackground": "#C678DD",
+        "statusBar.foreground": "#282C34"
+    },
+
+    // Window customization
+    "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 1,
+    "window.titleBarStyle": "native",
+    
+    // Editor customization
+    "editor.fontSize": 12,
+    "editor.lineNumbers": "relative",
+    "editor.fontFamily": "'Fira Code','Noto Mono for Powerline', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "editor.minimap.enabled": false,
+
+    // VScode hack to get caps lock to work as escape
+    "keyboard.dispatch": "keyCode",
+
+    // Go settings
+    "go.gopath": "/home/niels/.go",
+
+    // Python settings
+    "python.pythonPath": "/usr/bin/python3",
+    "python.autoComplete.addBrackets": true,
+    "python.linting.pylintPath": "/usr/bin/pylint",
+    // This is according to the default linting but I allow names of 
+    // length 1 instead of the normal low of 2.
+    // This also allows names to start wiht a number, too lazy to fix regex for now.
+    "python.linting.pylintArgs": [
+        "--attr-rgx=(([a-z0-9_]{1,30})|(_[a-z0-9_]*))$",
+        "--method-rgx=(([a-z0-9_]{1,30})|(_[a-z0-9_]*))$",
+        "--function-rgx=(([a-z0-9_]{1,30})|(_[a-z0-9_]*))$",
+        "--argument-rgx=(([a-z0-9_]{1,30})|(_[a-z0-9_]*))$",
+        "--variable-rgx=(([a-z0-9_]{1,30})|(_[a-z0-9_]*))$",
+        "--inlinevar-rgx=(([a-z0-9_]{1,30})|(_[a-z0-9_]*))$"
+    ],
+
+    // Use these lines instead if you want to start using camelCase instead of snakecase
+    // "python.linting.pylintArgs": [
+    //     "--attr-rgx=_?_?[a-z][A-Za-z0-9]{2,30}$",
+    //     "--method-rgx=_?_?[a-z][A-Za-z0-9]{2,30}$",
+    //     "--function-rgx=_?_?[a-z][A-Za-z0-9]{2,30}$",
+    //     "--argument-rgx=_?[a-z][A-Za-z0-9]{2,30}$",
+    //     "--variable-rgx=_?[a-z][A-Za-z0-9]{2,30}$",
+    //     "--inlinevar-rgx=_?[a-z][A-Za-z0-9]{2,30}$"
+    // ],
+
+    // --------------------------------------------------
+    // |                 VIM SETTINGS                   |
+    // --------------------------------------------------
+    // General settings
+    "vim.disableExtension": false,
+    "vim.sneak": false,
+    "vim.leader": " ",
+    "vim.hlsearch": true,
+    "vim.camelCaseMotion.enable": true,
+
+    // Status bar settings
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.normal": ["#42A5F5", "#282C34"],
+    "vim.statusBarColors.insert": ["#98C379", "#282C34"],
+    "vim.statusBarColors.replace": ["#BE5046", "#282C34"],
+    "vim.statusBarColors.visual": ["#C678DD", "#282C34"],
+    "vim.statusBarColors.visualline": ["#C678DD", "#282C34"],
+    "vim.statusBarColors.visualblock": ["#C678DD", "#282C34"],
+
+    // Tells vim which keys not to handle
+    "vim.handleKeys": {
+        "<C-f>": false // This has been mapped to replace VScode command
+    },
+
+    // Key Remaps
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            // Allow ZZ to save and close a tab
+            "before": ["Z", "Z"],
+            "commands": [
+                ":wq"
+            ]
+        },
+        // BEGIN Move by lines BEGIN
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        },
+        {
+            "before": ["k"],
+            "after": ["g", "k"]
+        },
+        // END Move by lines END
+        // BEGIN Allow movement between panes by ctrl+hjkl BEGIN
+        {
+            "before": ["<C-j>"],
+            "after": ["<C-w>", "j"]
+        },
+        {
+            "before": ["<C-k>"],
+            "after": ["<C-w>", "k"]
+        },
+        {
+            "before": ["<C-l>"],
+            "after": ["<C-w>", "l"]
+        },
+        {
+            "before": ["<C-h>"],
+            "after": ["<C-w>", "h"]
+        },
+        // END Allow movement between panes by ctrl+hjkl END
+        // Remove search highlighting by pressing ctrl+n
+        {
+            "before": ["<C-n>"],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        // [V]ertical pane [o]pened
+        {
+            "before": ["<leader>", "v", "o"],
+            "commands": [
+                "workbench.action.moveEditorToNextGroup"
+            ]
+        },
+        // [V]ertical pane [c]losed
+        {
+            "before": ["<leader>", "v", "c"],
+            "commands": [
+                "workbench.action.moveEditorToPreviousGroup"
+            ]
+        },
+        // Create a [n]ew [f]ile
+        {
+            "before": ["<leader>", "n", "f"],
+            "commands": [
+                "explorer.newFile"
+            ]
+        },
+        // Create a [n]ew [d]irectory
+        {
+            "before": ["<leader>", "n", "d"],
+            "commands": [
+                "explorer.newFolder"
+            ]
+        },
+        // [T]oggle [s]idebar
+        {
+            "before": ["<leader>", "t", "s"],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+    ],
+
+    // Webdev settings
+    "emmet.showAbbreviationSuggestions": true,
+    "emmet.showExpandedAbbreviation": "always",
+    "emmet.triggerExpansionOnTab": true,
+    "[javascript]": {
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true
+    },
+    "python.linting.enabled": false,
+
+    // TODO highlight settings
+    "todohighlight.keywords": [
+        {
+            "text": "TODO:",
+            "color": "#FFFFFF",
+            "backgroundColor": "#42A5F5"
+        },
+    ],
+    "rust.rustup": {
+        "toolchain": "stable-x86_64-unknown-linux-gnu"
+    },
+    "rust.mode": "legacy",
+}

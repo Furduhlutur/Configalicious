@@ -1,0 +1,52 @@
+#! /bin/bash
+if [ -f /tmp/screen.png ]; then
+	rm /tmp/screen.png
+fi
+scrot /tmp/screen.png
+convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
+
+B='#00000000'
+D='#2196f3cc'
+T='#2196f3ee'
+W='#d50000bb'
+V='#4caf50ee'
+
+i3lock -e -i /tmp/screen.png \
+--insidevercolor=$B   \
+--ringvercolor=$D     \
+\
+--insidewrongcolor=$B \
+--ringwrongcolor=$W   \
+\
+--verifcolor=$T       \
+--wrongcolor=$T       \
+\
+--insidecolor=$B      \
+--ringcolor=$D        \
+--linecolor=$B        \
+--separatorcolor=$D   \
+\
+--timecolor=$T        \
+--datecolor=$T        \
+--layoutcolor=$T      \
+--keyhlcolor=$V       \
+--bshlcolor=$W        \
+\
+--time-font=Noto Sans \
+--date-font=Noto Sans \
+--verif-font=Noto Sans \
+--wrong-font=Noto Sans \
+\
+--screen 0            \
+--radius=120          \
+--clock               \
+--indicator           \
+--timestr="%H:%M"     \
+--datestr="%d.%m.%Y"  \
+--timesize=64         \
+--datesize=28         \
+--veriftext="Hmm..."  \
+--wrongtext="urhavebigdumb" \
+rm /tmp/screen.png
+
+#[[ -f $HOME/Pictures/LockIcon.png ]] && convert /tmp/screen.png $HOME/Pictures/LockIcon.png -gravity center -composite -matte /tmp/screen.png
