@@ -26,9 +26,9 @@
         "breadcrumb.activeSelectionForeground": "#42A5F5",
         "menu.selectionForeground": "#42A5F5",
         "menubar.selectionForeground": "#42A5F5",
-        "statusBar.background": "#C678DD",
-        "statusBar.noFolderBackground": "#C678DD",
-        "statusBar.debuggingBackground": "#C678DD",
+        "statusBar.background": "#42A5F5",
+        "statusBar.noFolderBackground": "#42A5F5",
+        "statusBar.debuggingBackground": "#42A5F5",
         "statusBar.foreground": "#282C34"
     },
 

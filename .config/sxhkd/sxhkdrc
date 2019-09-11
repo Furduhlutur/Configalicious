@@ -84,33 +84,21 @@ super + shift + x
 ctrl + alt + f
      firefox
 
+#Workfox
+ctrl + alt + w
+    firefox -P WorkWorkWork
+
 #Chromium
 ctrl + alt + g
-     chromium -no-default-browser-check
+    chromium -no-default-browser-check
 
 #Screen-Locker
 ctrl + alt + l
      xflock4
 
-#Xfce4-settings-manager
-ctrl + alt + m
-     xfce4-settings-manager
-
-#Compton Toggle
-ctrl + alt + o
-     ~/.config/bspwm/scripts/compton-toggle.sh
-
-#Rofi theme selector
-ctrl + alt + r
-   rofi-theme-selector
-
 #Pulse Audio Control
 ctrl + alt + u
      pavucontrol
-
-#P for programming loads the current programming side project
-ctrl + alt + p
-    kitty --session /home/niels/.config/kitty/sessions/yar
 
 #Slack
 ctrl + alt + s
@@ -118,7 +106,7 @@ ctrl + alt + s
 
 #htop
 ctrl + alt + h
-    kitty
+    kitty -e htop
 
 #########################
 # CONTROL + SHIFT KEYS  #

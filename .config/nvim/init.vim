@@ -309,8 +309,6 @@ let g:ale_sign_warning = '->'
 " #           WORD-MOTION SETTINGS            #
 " =============================================
 let g:wordmotion_spaces='_-.'
-" Fixing annoying deletion of line when deleteing word
+" Fixing annoying deletion of line when deleting word
 nmap dw de
 nmap cw ce
-
-
