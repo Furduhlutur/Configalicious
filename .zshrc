@@ -108,12 +108,8 @@ export TLDR_COLOR_EXAMPLE='blue'
 export TLDR_COLOR_DESCRIPTION='white'
 export TLDR_COLOR_COMMAND='green'
 
-# Remove this cancer after VioletWolf
-export PATH=$PATH:/home/niels/.gem/ruby/2.6.0/bin
-
 # Aliases
 alias cat=bat
 alias vim=nvim
-alias worknet='sshuttle -r office 178.128.138.243 104.248.167.248 192.168.4.134'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
