@@ -37,9 +37,10 @@ bspc config urgent_border_color 	"#dd2727"
 
 #Find out names with arandr or xrandr
 if xrandr -q | grep "DP2-1 con" ; then
-    #Dual monitor when docked
-    bspc monitor DP2-1 -d 6 7 8 9 10
-    bspc monitor eDP1 -d 1 2 3 4 5
+    #Triple monitor when docked
+    bspc monitor DP2-1 -d 2 3 4 5
+    bspc monitor DP2-2 -d 6 7 8 9
+    bspc monitor eDP1 -d 1
 elif xrandr -q | grep "HDMI2 con" ; then
     #Dual monitor when presenting in meeting room
     bspc monitor HDMI2 -d 6 7 8 9 10

@@ -57,6 +57,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source ~/.scripts.sh
 
 # User configuration
 # Uncomment to run archey3 when a new terminal is opened
@@ -72,16 +73,6 @@ stty stop '' -ixoff -ixon
 # export MANPATH="/usr/local/man:$MANPATH"
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-copy() {
-    if [[ $# -eq 0 ]]; then
-        cat | xclip -sel clip
-    elif [ -f $1 ]; then
-        xclip -sel clip $1
-    else
-        printf '%s' $1 | xclip -sel clip
-    fi
-}
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
