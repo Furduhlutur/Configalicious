@@ -101,9 +101,10 @@ export TLDR_COLOR_COMMAND='green'
 
 # Aliases
 alias cat=bat
-alias ls=lsd
+alias ls='lsd --icon never'
 alias vim=nvim
 alias copy=clipcopy
 alias paste=clippaste
+alias zt=zerotier-cli
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
