@@ -60,9 +60,6 @@ super + {o,i}
 # SUPER + SHIFT KEYS    #
 #########################
 
-#DMENU
-super + shift + d
-	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
 
 #Reload bspwm
 super + shift + r
@@ -107,6 +104,10 @@ ctrl + alt + s
 #htop
 ctrl + alt + h
     kitty -e htop
+
+#dmenu
+ctrl + alt + d
+	dmenu_run -i -nb '#282c34' -nf '#42a5f5' -sb '#42a5f5' -sf '#282c34' -fn 'NotoMonoRegular:regular:pixelsize=20'
 
 #########################
 # CONTROL + SHIFT KEYS  #

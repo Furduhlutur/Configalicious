@@ -118,6 +118,9 @@ set undodir=~/.local/share/nvim/undo
 set textwidth=0
 set wrapmargin=0
 
+" Add ruler at column 100
+set cc=100
+
 " =============================================
 " #                KEYBINDINGS                #
 " =============================================
@@ -208,6 +211,9 @@ endif
 
 colorscheme onedark
 hi Normal ctermbg=None
+
+" Setting color of ruler
+highlight ColorColumn ctermbg=0
 
 " NERDTree syntax highlight changed
 let s:blue = "42A5F5"

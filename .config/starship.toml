@@ -1,4 +1,4 @@
 [character]
 symbol = "❯"
-style_success = "bold purple"
+style_success = "bold black"
 style_failure = "red"

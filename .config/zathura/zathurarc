@@ -21,5 +21,4 @@ set index-active-bg           "#42A5F5"
 
 set recolor-lightcolor        "#272B33"
 
-set recolor                   "true"
 set recolor-keephue           "false"
