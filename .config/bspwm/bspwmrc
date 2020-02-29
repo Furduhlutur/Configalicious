@@ -43,15 +43,15 @@ if xrandr -q | grep "DP2-1 con" ; then
     bspc monitor eDP1 -d 1
 elif xrandr -q | grep "HDMI2 con" ; then
     #Dual monitor when presenting in meeting room
-    bspc monitor HDMI2 -d 6 7 8 9 10
+    bspc monitor HDMI2 -d 6 7 8 9
     bspc monitor eDP1 -d 1 2 3 4 5
 elif xrandr -q | grep "DP2 con" ; then
     #Dual monitor when presenting in core
-    bspc monitor DP2 -d 6 7 8 9 10
+    bspc monitor DP2 -d 6 7 8 9
     bspc monitor eDP1 -d 1 2 3 4 5
 else
     #Single monitor
-    bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+    bspc monitor -d 1 2 3 4 5 6 7 8 9
 fi
 
 #Fullscreen applications

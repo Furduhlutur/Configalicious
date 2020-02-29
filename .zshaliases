@@ -1,0 +1,18 @@
+###########
+# ALIASES #
+###########
+
+# Bash command overwrites
+alias cat=bat
+alias ls='lsd --icon never'
+alias vim=nvim
+
+# Shortenings of random commands
+alias copy=clipcopy
+alias paste=clippaste
+alias zt=zerotier-cli
+alias fetch="rsync -r -e 'ssh -i ~/.ssh/syndis_rsa'"
+
+# Tmux aliases
+alias tmk="tmux kill-session"
+alias tma="tmux attach"

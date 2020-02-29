@@ -1,0 +1,22 @@
+# Theming for note
+export NOTE_P1_COLOR="blue"
+export NOTE_P1_STYLE="bold"
+export NOTE_P2_COLOR="bright white"
+
+# Theming for bat
+export BAT_THEME="TwoDark"
+
+# Add Golang to path
+export GOPATH="/home/niels/.go"
+export GOBIN="$GOPATH/bin"
+export PATH=$PATH:$GOBIN
+
+# Add Rust to path
+export PATH=$PATH:/home/niels/.cargo/bin
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+# Theming for tldr
+export TLDR_COLOR_NAME='blue bold'
+export TLDR_COLOR_EXAMPLE='blue'
+export TLDR_COLOR_DESCRIPTION='white'
+export TLDR_COLOR_COMMAND='green'

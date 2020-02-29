@@ -297,7 +297,7 @@ au User Ncm2Plugin call ncm2#register_source({
 " =============================================
 let g:LanguageClient_serverCommands = {
             \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-            \ 'python': ['pyls']
+            \ 'python': ['pyls', '--log-file', '/tmp/pyls.log']
             \ }
 
 let g:LanguageClient_useVirtualText=0

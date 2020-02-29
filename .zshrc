@@ -58,11 +58,16 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source ~/.scripts.sh
+source ~/.zshaliases
+source ~/.zshexports
 
 # User configuration
-# Uncomment to run archey3 when a new terminal is opened
 # if [ -f /usr/bin/neofetch ]; then neofetch --color_blocks off; fi
-neofetch --disable GPU CPU theme icons resolution --color_blocks off
+if [ -f /usr/bin/neofetch ]; then
+    neofetch --off --disable GPU CPU theme icons resolution shell wm de term term_font packages --color_blocks off
+fi
+
+note ls -p
 
 # Disable ctrl-s and ctrl-q (XON/XOFF flow of control)
 stty stop '' -ixoff -ixon
@@ -80,31 +85,5 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
-
-# Theming for bat
-export BAT_THEME="TwoDark"
-
-# Add Golang to path
-export GOPATH="/home/niels/.go"
-export GOBIN="$GOPATH/bin"
-export PATH=$PATH:$GOBIN
-
-# Add Rust to path
-export PATH=$PATH:/home/niels/.cargo/bin
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-
-# Theming for tldr
-export TLDR_COLOR_NAME='blue bold'
-export TLDR_COLOR_EXAMPLE='blue'
-export TLDR_COLOR_DESCRIPTION='white'
-export TLDR_COLOR_COMMAND='green'
-
-# Aliases
-alias cat=bat
-alias ls='lsd --icon never'
-alias vim=nvim
-alias copy=clipcopy
-alias paste=clippaste
-alias zt=zerotier-cli
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
