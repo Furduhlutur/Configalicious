@@ -9,10 +9,11 @@ alias vim=nvim
 
 # Shortenings of random commands
 alias copy=clipcopy
-alias paste=clippaste
-alias zt=zerotier-cli
 alias fetch="rsync -r -e 'ssh -i ~/.ssh/syndis_rsa'"
+alias paste=clippaste
+alias worknet='sshuttle -r office 178.128.138.243 104.248.167.248 192.168.4.134'
+alias zt=zerotier-cli
 
 # Tmux aliases
-alias tmk="tmux kill-session"
-alias tma="tmux attach"
+alias tma="tmux attach -t"
+alias tmk="tmux kill-session -t"
