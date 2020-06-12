@@ -1,4 +1,4 @@
-cddir() {
+cdd() {
     mkdir $1 && cd $_
 }
 
@@ -10,4 +10,16 @@ tm() {
     else
         tmux new -s $name
     fi
+}
+
+covid_json() {
+    curl -s "https://e.infogram.com/7327507d-28f5-4e3c-b587-c1680bd790e6?parent_url=https%3A%2F%2Fwww.covid.is%2Ftolulegar-upplysingar&src=embed" | grep -E "\{.*\}" -o | tail -1 | jq '[.elements.content.content.entities[].props[] | objects | .data[0][0] | select(length == 3 and (.[2] | strings) and (.[2] | contains("Path")))] | reverse | [.[] | {total: .[0], category: .[1]}]' | sed 's/<[^>]*>\|\\n\\n//g'
+}
+
+covid() {
+    curl -s "https://e.infogram.com/7327507d-28f5-4e3c-b587-c1680bd790e6?parent_url=https%3A%2F%2Fwww.covid.is%2Ftolulegar-upplysingar&src=embed" | grep -E "\{.*\}" -o | tail -1 | jq '[.elements.content.content.entities[].props[] | objects | .data[0][0] | select(length == 3 and (.[2] | strings) and (.[2] | contains("Path")))] | reverse | .[] | "\(.[0]) \(.[1])"' | sed 's/<[^>]*>\|\\n\\n\|"//g'
+}
+
+daysuntil() {
+    echo $(( ($(date -d "$1" +%s --utc) - $(date +%s) )/(60*60*24) ))
 }

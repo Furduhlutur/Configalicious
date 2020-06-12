@@ -2,7 +2,7 @@
 # SUPER + FUNCTION KEYS #
 #########################
 
-#Spotify
+# Spotify
 super + F10
     spotify
 
@@ -10,47 +10,47 @@ super + F10
 # SUPER + ... KEYS      #
 #########################
 
-#Toggle fullscreen of window
+# Toggle fullscreen of window
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-#Hide polybar
+# Hide polybar
 super + y
     polybar-msg cmd toggle
 
-#Oblogout
+# Oblogout
 super + x
     oblogout
 
-#Xkill
+# Xkill
 super + Escape
     xkill
 
-#Terminal emulator
+# Terminal emulator
 super + Return
 	kitty
 
-#Rofi
+# Rofi
 super + @space
 	rofi -modi "window,run,drun" -show drun -fuzzy -hide-scrollbar
 
-#Close and Kill
+# Close and Kill
 super + {_,shift + }w
 	bspc node -{c,k}
 
-#Thunar
+# Thunar
 super + e
 	thunar
 
-#Alternate between the tiled and monocle layout
+# Alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next
 
-#Select password from password pass (The unix standard)
+# Select password from password pass (The unix standard)
 super + p
     rofi-pass
 
-#Focus on older or newer node in focus history
+# Focus on older or newer node in focus history
 super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
@@ -61,15 +61,15 @@ super + {o,i}
 #########################
 
 
-#Reload bspwm
+# Reload bspwm
 super + shift + r
 	~/.config/bspwm/bspwmrc
 
-#reload sxhkd:
+# Reload sxhkd:
 super + shift + s
 	pkill -USR1 -x sxhkd
 
-#Logout
+# Logout
 super + shift + x
 	bspc quit
 
@@ -77,35 +77,36 @@ super + shift + x
 # CONTROL + ALT KEYS    #
 #########################
 
-#Firefox
+# Firefox
 ctrl + alt + f
      firefox
 
-#Workfox
+# Workfox
 ctrl + alt + w
     firefox -P WorkWorkWork
 
-#Chromium
+# Chromium
 ctrl + alt + g
     chromium -no-default-browser-check
 
-#Screen-Locker
+# Screen-Locker
+# Used to be xflock4
 ctrl + alt + l
-     xflock4
+     slock
 
-#Pulse Audio Control
+# Pulse Audio Control
 ctrl + alt + u
      pavucontrol
 
-#Slack
+# Slack
 ctrl + alt + s
     slack
 
-#htop
+# htop
 ctrl + alt + h
     kitty -e htop
 
-#dmenu
+# dmenu
 ctrl + alt + d
 	dmenu_run -i -nb '#282c34' -nf '#42a5f5' -sb '#42a5f5' -sf '#282c34' -fn 'NotoMonoRegular:regular:pixelsize=20'
 
@@ -113,7 +114,7 @@ ctrl + alt + d
 # CONTROL + SHIFT KEYS  #
 #########################
 
-#Xcfe4-TaskManager
+# Xcfe4-TaskManager
 ctrl + shift + Escape
     xfce4-taskmanager
 
@@ -121,15 +122,15 @@ ctrl + shift + Escape
 #     SCREENSHOTS       #
 #########################
 
-#Scrot
+# Scrot
 ctrl + Print
     scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
 
-#screeenshooter
+# screeenshooter
 Print
      xfce4-screenshooter
 
-#Gnome-Screenshot
+# Gnome-Screenshot
 ctrl + shift + Print
      gnome-screenshot -i
 
@@ -138,48 +139,48 @@ ctrl + shift + Print
 #     MULTIMEDIA KEYS   #
 #########################
 
-#Raises volume
+# Raises volume
 XF86AudioRaiseVolume
     amixer set Master 5%+
 
-#Lowers volume
+# Lowers volume
 XF86AudioLowerVolume
     amixer set Master 5%-
 
-#Mute
+# Mute
 XF86AudioMute
     amixer -D pulse set Master 1+ toggle
 
-#Playerctl works for Pragha, Spotify and others
-#DELETE the line for mpc if you want to use playerctl
-#putting a hashtag in front of the mpc line will NOT work
-#mpc works for ncmpcpp
+# Playerctl works for Pragha, Spotify and others
+# DELETE the line for mpc if you want to use playerctl
+# putting a hashtag in front of the mpc line will NOT work
+# mpc works for ncmpcpp
 
-#PLAY
+# PLAY
 XF86AudioPlay
     mpc toggle
-    #playerctl play-pause
+    # playerctl play-pause
 
-#Next
+# Next
 XF86AudioNext
      mpc next
-     #playerctl next
+     # playerctl next
 
-#previous
+# previous
 XF86AudioPrev
     mpc prev
-    #playerctl previous
+    # playerctl previous
 
-#Stop
+# Stop
 XF86AudioStop
     mpc stop
-    #playerctl stop
+    # playerctl stop
 
-#Brightness up
+# Brightness up
 XF86MonBrightnessUp
     xbacklight -inc 10
 
-#Brightness down
+# Brightness down
 XF86MonBrightnessDown
     xbacklight -dec 10
 
@@ -187,29 +188,28 @@ XF86MonBrightnessDown
 #########################
 # BSPWM LAYOUT KEYS     #
 #########################
-#################################################################
 
-#Focus selected desktop 
+# Focus selected desktop 
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
-#Focus next/prev monitor
+# Focus next/prev monitor
 alt + {_,shift + }Tab
 	bspc monitor -f {next,prev}
 
 #################################################################
 
-#Move window to selected desktop 
+# Move window to selected desktop 
 super + shift + {1-9,0}
     id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
 
 #################################################################
 
-#Focus next/prev program in local desktop
+# Focus next/prev program in local desktop
 super + {_,shift + }Tab
 	bspc node -f {next,prev}.local
 
-#Rotate desktop
+# Rotate desktop
 alt + space
 	bspc node @/ --rotate 90
 
@@ -225,11 +225,11 @@ super + {_,shift + }a
 super + ctrl + {h,l}
     bspc desktop -f {prev,next}
 
-# expand a window by moving one of its side outward
+# Expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# contract a window by moving one of its side inward
+# Contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 

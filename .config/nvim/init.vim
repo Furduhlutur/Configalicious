@@ -37,23 +37,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'w0rp/ale'
 
 " Semantic language support
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-
-" Completion plugins ncm2 -> neovim-completion-manager
-Plug 'ncm2/ncm2'                     " Actual completion plugin
-Plug 'roxma/nvim-yarp'               " To make ncm2 work properly
-Plug 'ncm2/ncm2-bufword'             " Completions from the current buffer
-Plug 'ncm2/ncm2-path'                " Path completions
-" Plug 'ncm2/ncm2-jedi'                " Completions for python
-" Plug 'ncm2/ncm2-pyclang'             " Completions for C/C++
-Plug 'ncm2/ncm2-go', { 'for': 'go' } " Completions for Go
-" Plug 'ncm2/ncm2-racer'               " Completions for Rust
-
-" Go features for vim
-Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " More useful word motions!
 Plug 'chaoren/vim-wordmotion'
@@ -66,6 +50,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Prettify vim with icons and glyphs
 Plug 'ryanoasis/vim-devicons'
+
+" Personal Wiki using vim
+Plug 'vimwiki/vimwiki'
 
 " Fuzzy finding
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -247,69 +234,159 @@ let g:AutoPairsMapBS=0
 let g:AutoPairsMapCh=0
 
 " =============================================
+" #               RUST SETTINGS               #
+" =============================================
+autocmd BufWritePost *.rs :Format
+
+" =============================================
 " #              PYTHON SETTINGS              #
 " =============================================
 let g:python3_host_prog='/usr/bin/python'
 
 " =============================================
-" #               NCM2 SETTINGS               #
+" #                COC SETTINGS               #
 " =============================================
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" TextEdit might fail if hidden is not set.
+set hidden
 
-" IMPORTANT: :help  Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
 
-" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-" found' messages
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" wrap existing omnifunc
-" Note that omnifunc does not run in background and may probably block the
-" editor. If you don't want to be blocked by omnifunc too often, you could
-" add 180ms delay before the omni wrapper:
-"  'on_complete': ['ncm2#on_complete#delay', 180,
-"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-au User Ncm2Plugin call ncm2#register_source({
-        \ 'name' : 'css',
-        \ 'priority': 9,
-        \ 'subscope_enable': 1,
-        \ 'scope': ['css','scss'],
-        \ 'mark': 'css',
-        \ 'word_pattern': '[\w\-]+',
-        \ 'complete_pattern': ':\s*',
-        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-        \ })
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-" =============================================
-" #           LANGUAGE CLIENT SETTINGS        #
-" =============================================
-let g:LanguageClient_serverCommands = {
-            \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-            \ 'python': ['pyls', '--log-file', '/tmp/pyls.log']
-            \ }
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-let g:LanguageClient_useVirtualText=0
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" coc-tsserver, coc-python are the examples of servers that support it.
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Mappings using CoCList:
+" Show all diagnostics.
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " =============================================
 " #                ALE SETTINGS               #
 " =============================================
 let g:ale_sign_error = '=>'
 let g:ale_sign_warning = '->'
-" TODO: Figure out how to get these commands to work
-" nnoremap <leader>gh :ALEHover<CR>
-" nnoremap <leader>gd :ALEGoToDefinition<CR>
 
 " =============================================
 " #           WORD-MOTION SETTINGS            #
@@ -318,3 +395,13 @@ let g:wordmotion_spaces='_-.'
 " Fixing annoying deletion of line when deleting word
 nmap dw de
 nmap cw ce
+
+" =============================================
+" #             VIMWIKI SETTINGS              #
+" =============================================
+set nocompatible
+filetype plugin on
+let g:vimwiki_list = [{'path': '~/.wiki/', 'syntax': 'markdown', 'ext': '.md',
+                     \ 'path_html': '~/.wiki_html/'},
+                     \ {'path': '~/.TILs/',  'syntax': 'markdown', 'ext': '.md',
+                     \ 'path_html': '~/.TILs_html/'}]

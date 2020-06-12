@@ -433,7 +433,7 @@ font-3 = "Noto Sans Mono:size=10;0"
 
 modules-left = bspwm xwindow
 modules-center = memory2 cpu2 pub-ip
-modules-right = xkeyboard pavolume battery date
+modules-right = work xkeyboard pavolume battery date
 
 tray-detached = false
 tray-offset-x = 0
@@ -444,8 +444,8 @@ tray-scale = 1.0
 tray-position = right
 tray-background = ${colors.background}
 
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
 
 
 ################################################################################
@@ -799,7 +799,7 @@ ws-icon-5 = 6;6
 ws-icon-6 = 7;7
 ws-icon-7 = 8;8
 ws-icon-8 = 9;9
-ws-icon-default = " "
+ws-icon-default = "1"
 
 
 format = <label-state> <label-mode>
@@ -812,7 +812,7 @@ label-focused-foreground = ${colors.foreground}
 
 label-occupied = %icon%
 label-occupied-padding = 1
-label-occupied-background = ${colors.background}
+label-occupied-overline = #42a5f5
 
 label-urgent = %icon%
 label-urgent-padding = 1
@@ -821,8 +821,8 @@ label-empty = %icon%
 label-empty-foreground = ${colors.foreground}
 label-empty-padding = 1
 label-empty-background = ${colors.background}
-;label-monocle = "  "
-;label-monocle-foreground = ${colors.foreground}
+label-monocle = ""
+label-monocle-foreground = #42a5f5
 ;label-tiled = "  "
 ;label-tiled-foreground = ${colors.foreground}
 ;label-fullscreen = "  "
@@ -1735,6 +1735,16 @@ type = internal/xwindow
 label = %title%
 label-maxlen = 50
 
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+###############################################################################
+
+[module/work]
+type = custom/script
+label = %output%
+exec = ~/.config/polybar/scripts/work.sh
+interval = 10
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
