@@ -201,6 +201,7 @@
             "backgroundColor": "#42A5F5"
         },
     ],
+    "omnisharp.path": "latest",
     "rust.rustup": {
         "toolchain": "stable-x86_64-unknown-linux-gnu"
     },

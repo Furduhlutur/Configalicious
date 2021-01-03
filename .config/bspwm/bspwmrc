@@ -43,8 +43,8 @@ if xrandr -q | grep "DP2-1 con" ; then
     bspc monitor eDP1 -d 1
 elif xrandr -q | grep "HDMI2 con" ; then
     #Dual monitor when presenting in meeting room
-    bspc monitor HDMI2 -d 6 7 8 9
-    bspc monitor eDP1 -d 1 2 3 4 5
+    bspc monitor HDMI2 -d 2 3 4 5 6 7 8 9
+    bspc monitor eDP1 -d 1
 elif xrandr -q | grep "DP2 con" ; then
     #Dual monitor when presenting in core
     bspc monitor DP2 -d 6 7 8 9
@@ -63,18 +63,21 @@ bspc rule -a Vlc state=fullscreen
 # Floating applications
 bspc rule -a Arandr state=floating
 bspc rule -a feh state=floating
-#bspc rule -a mpv state=floating sticky=on
-#bspc rule -a Font-manager state=floating
 bspc rule -a Galculator state=floating
-#bspc rule -a Gpick state=floating sticky=on
-#bspc rule -a Nitrogen state=floating
 bspc rule -a Oblogout state=floating
+bspc rule -a install4j-burp-StartBurp:*:" " state=floating
+# ===============LEFTOVER===============
 #bspc rule -a Pavucontrol state=floating sticky=on
 #bspc rule -a Peek state=floating
 #bspc rule -a rofi state=floating sticky=on
 #bspc rule -a Skype state=floating
 #bspc rule -a Stacer state=floating
 #bspc rule -a Xfce4-appfinder state=floating sticky=on
+#bspc rule -a mpv state=floating sticky=on
+#bspc rule -a Font-manager state=floating
+#bspc rule -a Gpick state=floating sticky=on
+#bspc rule -a Nitrogen state=floating
+# ===============LEFTOVER===============
 
 # Tiled applications
 bspc rule -a Gnome-disks state=tiled

@@ -36,6 +36,9 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 " Asynchronous linting, lint as you type!
 Plug 'w0rp/ale'
 
+" Golang cozyness
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -48,15 +51,18 @@ Plug 'sheerun/vim-polyglot'
 " Add syntax highlighting to NERDTree
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" Prettify vim with icons and glyphs
-Plug 'ryanoasis/vim-devicons'
-
 " Personal Wiki using vim
 Plug 'vimwiki/vimwiki'
 
 " Fuzzy finding
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" Prettify vim with icons and glyphs
+Plug 'ryanoasis/vim-devicons'
+
+" Floating Terminal
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " =============================================
@@ -65,6 +71,9 @@ call plug#end()
 if has('autocmd')
     filetype plugin indent on
 endif
+
+" wat
+set guifont=Symbols\ Nerd\ Font
 
 " Set to good boi encoding
 set encoding=utf-8
@@ -106,7 +115,7 @@ set textwidth=0
 set wrapmargin=0
 
 " Add ruler at column 100
-set cc=100
+" set cc=100
 
 " =============================================
 " #                KEYBINDINGS                #
@@ -205,12 +214,12 @@ highlight ColorColumn ctermbg=0
 " NERDTree syntax highlight changed
 let s:blue = "42A5F5"
 let g:NERDTreeExtensionHighlightColor = {}
-let g:NERDTreeExtensionHighlightColor['python'] = s:blue
+let g:NERDTreeExtensionHighlightColor['py'] = s:blue
 let g:NERDTreeExtensionHighlightColor['go'] = s:blue
 
 " =============================================
 " #              SYNTAX SETTINGS              #
-"=============================================
+" =============================================
 
 " For Python
 let g:python_highlight_all=1
@@ -405,3 +414,18 @@ let g:vimwiki_list = [{'path': '~/.wiki/', 'syntax': 'markdown', 'ext': '.md',
                      \ 'path_html': '~/.wiki_html/'},
                      \ {'path': '~/.TILs/',  'syntax': 'markdown', 'ext': '.md',
                      \ 'path_html': '~/.TILs_html/'}]
+
+" =============================================
+" #            FLOATERM SETTINGS              #
+" =============================================
+nnoremap   <silent>   <F9>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
+nnoremap   <silent>   <F8>    :FloatermPrev<CR>
+tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F10>    :FloatermNext<CR>
+tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+tnoremap   <silent>   <F11>   <C-\><C-n><CR>
+nnoremap   <leader>s :FloatermSend<CR>
+vnoremap   <leader>s :FloatermSend<CR>

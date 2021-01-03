@@ -23,3 +23,26 @@ covid() {
 daysuntil() {
     echo $(( ($(date -d "$1" +%s --utc) - $(date +%s) )/(60*60*24) ))
 }
+
+ipinfo() {
+    curl -s ipinfo.io/$1 | jq .
+}
+
+wd() {
+    mkdir -p ~/Work/$1
+    mkdir ~/Work/$1/Code
+    mkdir ~/Work/$1/Images
+    mkdir ~/Work/$1/PoCs
+}
+
+bspwm_nodes() {
+    if [ -z $1 ]; then
+        nodes=$(bspc query -N)
+    else
+        nodes=$(bspc query -N -n $1)
+    fi
+    while IFS= read -r val; do
+        echo "$val $(xtitle $val)"
+    done <<< "$nodes"
+}
+

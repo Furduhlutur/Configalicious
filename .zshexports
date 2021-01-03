@@ -6,6 +6,9 @@ export NOTE_P2_COLOR="bright white"
 # Theming for bat
 export BAT_THEME="TwoDark"
 
+# Options for RipGrep
+export RIPGREP_CONFIG_PATH='/home/niels/.config/ripgrep.conf'
+
 # Add Golang to path
 export GOPATH="/home/niels/.go"
 export GOBIN="$GOPATH/bin"
